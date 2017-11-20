@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student Id="0">
+    <FirstName>Василий</FirstName>
+    <Last>Сергеев</Last>
+    <Age>25</Age>
+    <Gender>0</Gender>
+  </Student>
+  <Student Id="1">
+    <FirstName>Зинаида</FirstName>
+    <Last>Сечкина</Last>
+    <Age>30</Age>
+    <Gender>1</Gender>
+  </Student>
+</Students>
