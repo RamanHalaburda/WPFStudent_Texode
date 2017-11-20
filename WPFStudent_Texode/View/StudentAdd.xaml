@@ -1,0 +1,55 @@
+﻿<Window x:Class="WPFStudent_Texode.View.StudentAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:models="clr-namespace:WPFStudent_Texode.Model"
+        xmlns:converters="clr-namespace:WPFStudent_Texode.OtherLogic"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Новый студент" Height="300" Width="300" ResizeMode="NoResize">
+    <Window.Resources>
+        <converters:SexConverter x:Key="SexConvert">
+        </converters:SexConverter>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Student+SexEnum"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Grid.Column="0" Margin="5">
+            <TextBlock Text="Имя: " />
+            <TextBox Name="firstName" Text="" />
+            <TextBlock Text="Фамилия: " />
+            <TextBox x:Name="last" Text="" />
+            <TextBlock Text="Возраст: " />
+            <TextBox x:Name="age" Text="" />
+            <TextBlock Text="Пол: " />
+            <ComboBox x:Name="sex" VerticalAlignment="Center" MinWidth="150" Margin="0,0,0,5"
+              ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Name="somePerson" Text="{Binding Converter={StaticResource SexConvert}}">
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Добавить" Margin="0,0,0,0" Width="100" Click="Add_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

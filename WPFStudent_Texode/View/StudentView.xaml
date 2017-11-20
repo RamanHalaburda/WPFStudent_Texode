@@ -1,0 +1,122 @@
+﻿<Window x:Name="ViewStudents" x:Class="WPFStudent_Texode.View.StudentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:WPFStudent_Texode.Model"
+        xmlns:converters="clr-namespace:WPFStudent_Texode.OtherLogic"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="View Students" Height="400" Width="500">
+
+    <Window.Resources>
+        <converters:AgeConverter x:Key="AgeConvert">
+        </converters:AgeConverter>
+        <converters:SexConverter x:Key="SexConvert">
+        </converters:SexConverter>
+        <ControlTemplate x:Key="EmptyListBoxTemplate">
+            <TextBlock FontSize="18" Text="Список пуст" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </ControlTemplate>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#ffffff"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#aaaaaa"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Student+SexEnum"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <Menu Height="23" VerticalAlignment="Top">
+                <MenuItem Header="Опции">
+                    <MenuItem Header="Открыть файл" Click="Open_Click" ></MenuItem>
+                    <MenuItem Header="Сохранить файл" Click="Save_Click" ></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <ListBox x:Name="studentList" Grid.Column="0" ItemsSource="{Binding Students}" AlternationCount="2"
+                 SelectedItem="{Binding SelectedStudent}" Margin="0,20,0,0" SelectionChanged="ListBox_SelectionChanged" SelectionMode="Extended">
+            <ListBox.Style>
+                <Style TargetType="{x:Type ListBox}">
+                    <Style.Triggers>
+                        <DataTrigger Value="{x:Null}" Binding="{Binding DataContext.Students, RelativeSource={RelativeSource Self}}">
+                            <Setter Property="Template" Value="{StaticResource EmptyListBoxTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Value="0" Binding="{Binding DataContext.Students.Count, RelativeSource={RelativeSource Self}}">
+                            <Setter Property="Template" Value="{StaticResource EmptyListBoxTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock FontSize="12">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="Last" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock FontSize="12" Text="{Binding Age, ValidatesOnExceptions=True, Converter={StaticResource AgeConvert}}">
+                        </TextBlock>
+                        <TextBlock Text="{Binding Sex, ValidatesOnExceptions=True, Converter={StaticResource SexConvert}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1" DataContext="{Binding SelectedStudent}" Grid.ColumnSpan="2" Margin="5,20,5,0">
+            <TextBlock Text="Имя: " />
+            <TextBox x:Name="firstname" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+            <TextBlock Text="Фамилия: " />
+            <TextBox x:Name="last" Text="{Binding Last, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+            <TextBlock Text="Возраст: " />
+            <TextBox x:Name="age" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+            <TextBlock Text="Пол: " />
+            <ComboBox x:Name="sex" VerticalAlignment="Center" MinWidth="150" Margin="0,0,0,5"
+              ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedValue="{Binding Sex, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Name="somePerson" Text="{Binding Converter={StaticResource SexConvert}}">
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Новый студент" Margin="0,0,5,0" Width="100" Click="Add_Click"/>
+                <Button x:Name="removeButton" Grid.Column="2" Content="Удалить" Margin="0,0,0,0" Width="100" Click="Remove_Click" IsEnabled="False"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+
+</Window>

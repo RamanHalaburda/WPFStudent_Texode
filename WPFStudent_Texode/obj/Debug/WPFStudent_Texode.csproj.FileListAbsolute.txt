@@ -1,0 +1,17 @@
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\View\StudentAdd.g.cs
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\View\StudentView.g.cs
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\App.g.cs
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode_MarkupCompile.cache
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode_MarkupCompile.lref
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\View\StudentAdd.baml
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.exe
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.pdb
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\bin\Debug\WPFStudent_Texode.exe.config
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\bin\Debug\WPFStudent_Texode.exe
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\bin\Debug\WPFStudent_Texode.pdb
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\View\StudentView.baml
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.g.resources
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.Properties.Resources.resources
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.csproj.GenerateResource.Cache
+E:\study\PREPARE_TO_TEXODE\WPFStudent_Texode\WPFStudent_Texode\obj\Debug\WPFStudent_Texode.csproj.CoreCompileInputs.cache
